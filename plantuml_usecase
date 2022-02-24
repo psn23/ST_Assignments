@@ -1,0 +1,88 @@
+@startuml
+left to right direction
+actor "User" as U
+actor "Metamask Service" as MS
+actor seller
+actor buyer
+actor creator
+actor "secondary seller" as SSeller
+actor "Blockchain service" as Blk
+actor server
+rectangle UC_dia {
+  usecase "Signup" as UC1
+  usecase "View Profile" as UC2
+  usecase "Login" as UC3
+  usecase "Sell Assets" as UC4
+  usecase "View Auction details" as UC5
+  usecase "Buy Assets" as UC6
+  usecase "Auction participation" as UC7
+  usecase "Feedback" as UC8
+  usecase "ContactUs" as UC9
+  usecase "Winning and Recieving Assets" as UC10
+  usecase "Time series price prediction Model" as UC11
+  usecase "Metamask Wallet Integration" as UC12
+  usecase "AI chatbot" as UC13
+  usecase "View Assets and Current bid details" as UC14
+  usecase "Bid Assets" as UC15
+  usecase "Verify Funds" as UC16
+  usecase "Payment" as UC17
+  usecase "Shipping Details" as UC18
+  usecase "Digital Asset" as UC19
+  usecase "Verify Password/Token" as UC20
+  usecase "Update Profile" as UC21
+  usecase "Email Verification" as UC22
+  usecase "Error" as UC23
+
+}
+
+U <|-- seller
+U <|-- buyer
+seller <|-- creator
+seller <|-- Sseller
+
+U --> UC1
+U --> UC2
+U --> UC3
+U --> UC4
+U --> UC5
+U --> UC6
+U --> UC7
+U --> UC8
+U --> UC9
+
+UC12 -- MS
+UC8 -- server
+UC9 -- server
+UC14 -- server
+UC16 -- MS
+UC17 -- MS
+UC6 -- server
+UC18 -- server
+UC5 -- server
+UC19 -- Blk
+UC20 -- server
+UC21 -- server
+UC22 -- server
+
+UC10 ..> UC6 :include
+UC10 ..> UC7 :extend
+UC6 ..> UC11 :include
+UC1 ..> UC12 :include
+UC13 ..> UC9 :extend
+UC7 ..> UC14 :include
+UC15 ..> UC7 :extend
+UC6 ..> UC16 :include
+UC17 ..> UC16 :extend
+UC18 ..> UC6 :extend
+UC19 ..> UC6 :extend
+UC19 ..> UC4 :extend
+UC3 ..> UC20 :include
+UC21 ..> UC2 :extend
+UC1 ..> UC22 :include
+UC23 ..> UC1 :extends
+UC23 ..> UC22 :extends
+UC23 ..> UC20 :extends
+UC23 ..> UC17 :extends
+UC23 ..> UC16 :extends
+
+@enduml
